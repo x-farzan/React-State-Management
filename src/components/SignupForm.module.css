@@ -1,0 +1,48 @@
+.button {
+  background-color: #404040;
+  border-radius: 3;
+  border-width: 3px solid;
+}
+
+.h1 {
+  margin-top: 150px;
+  justify-content: center;
+  text-align: center;
+}
+
+.p {
+  margin-top: 140px;
+  justify-content: center;
+  text-align: center;
+}
+
+.inputStyle {
+  margin-left: 550px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 3px solid gray;
+  outline: none;
+}
+
+.inputStyle:focus {
+  margin-left: 550px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 3px solid gray;
+  outline: none;
+}
+
+.p1 {
+  margin-top: 70px;
+  justify-content: center;
+  text-align: center;
+}
+
+.p2 {
+    margin-top: 5px;
+    justify-content: center;
+    text-align: center;
+  }
+  
