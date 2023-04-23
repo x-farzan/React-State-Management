@@ -19,11 +19,11 @@ const buttonStyling = {
   paddingLeft: "4%",
 };
 
-function SignupForm() {
+function SigninForm() {
   return (
     <div>
       <div className={styleClass.h1}>
-        <h1>Sign up.</h1>
+        <h1>Sign in.</h1>
       </div>
       <div>
         <Button
@@ -84,7 +84,7 @@ function SignupForm() {
             sx={{
               ...buttonStyling,
               marginLeft: "580px",
-              marginTop: "30px",
+              marginTop: "20px",
               borderRadius: "none",
               border: "none",
               backgroundColor: "#ff1493",
@@ -96,10 +96,15 @@ function SignupForm() {
               },
             }}
           >
-            Sign up
+            Sign in
           </Button>
         </div>
       </form>
+      <div>
+        <p className={styleClass.p1}>
+          Don't have and account? <b>Create Account</b>
+        </p>
+      </div>
       <div>
         <p className={styleClass.p2}>
           <b>Forgot password?</b>
@@ -109,4 +114,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default SigninForm;
