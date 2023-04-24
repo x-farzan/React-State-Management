@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
+import { Link } from "react-router-dom";
 
 const buttonStyling = {
   position: "absolute",
@@ -20,6 +21,20 @@ const buttonStyling = {
 };
 
 function SigninForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkCredentials = () => {
+    if (
+      email === sessionStorage.getItem("email") &&
+      password === sessionStorage.getItem("password")
+    ) {
+      alert("Logged in successfully!");
+    } else {
+      alert("invalid credentials!");
+    }
+  };
+
   return (
     <div>
       <div className={styleClass.h1}>
@@ -68,13 +83,20 @@ function SigninForm() {
             placeholder="Email"
             name="email"
             className={styleClass.inputStyle}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
         <div>
           <input
+            type="password"
             placeholder="Password"
             name="password"
             className={styleClass.inputStyle}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </div>
         <div>
@@ -95,6 +117,7 @@ function SigninForm() {
                 backgroundColor: "#ff1493",
               },
             }}
+            onClick={checkCredentials}
           >
             Sign in
           </Button>
@@ -102,7 +125,10 @@ function SigninForm() {
       </form>
       <div>
         <p className={styleClass.p1}>
-          Don't have and account? <b>Create Account</b>
+          Don't have and account?{" "}
+          <b>
+            <Link to="/signup">Create Account</Link>
+          </b>
         </p>
       </div>
       <div>

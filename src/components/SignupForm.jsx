@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
@@ -20,6 +20,15 @@ const buttonStyling = {
 };
 
 function SignupForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    // Set input field value in session storage
+    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("password", password);
+  }, [email, password]);
+
   return (
     <div>
       <div className={styleClass.h1}>
@@ -62,23 +71,31 @@ function SignupForm() {
       <div>
         <p className={styleClass.p}>or</p>
       </div>
-      <form>
+      <form action="/">
         <div>
           <input
             placeholder="Email"
             name="email"
             className={styleClass.inputStyle}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
         <div>
           <input
+            type="password"
             placeholder="Password"
             name="password"
             className={styleClass.inputStyle}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </div>
         <div>
           <Button
+            type="submit"
             size="small"
             variant="outlined"
             sx={{
