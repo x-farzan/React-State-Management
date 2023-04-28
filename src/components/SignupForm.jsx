@@ -1,8 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, Link } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 const buttonStyling = {
   position: "absolute",
@@ -19,15 +20,15 @@ const buttonStyling = {
   paddingLeft: "4%",
 };
 
-function SignupForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function SignupForm(props) {
+  const handleEmailState = (e) => {
+    props.setEmail(e.target.value);
+  };
+  const handlePasswordState = (e) => {
+    props.setPassword(e.target.value);
+  };
 
-  useEffect(() => {
-    // Set input field value in session storage
-    sessionStorage.setItem("email", email);
-    sessionStorage.setItem("password", password);
-  }, [email, password]);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -71,15 +72,23 @@ function SignupForm() {
       <div>
         <p className={styleClass.p}>or</p>
       </div>
-      <form action="/">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigate("/", {
+            state: {
+              email: props.email,
+              password: props.password,
+            },
+          });
+        }}
+      >
         <div>
           <input
             placeholder="Email"
             name="email"
             className={styleClass.inputStyle}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={handleEmailState}
           />
         </div>
         <div>
@@ -88,9 +97,7 @@ function SignupForm() {
             placeholder="Password"
             name="password"
             className={styleClass.inputStyle}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={handlePasswordState}
           />
         </div>
         <div>

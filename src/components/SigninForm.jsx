@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const buttonStyling = {
   position: "absolute",
@@ -21,14 +21,13 @@ const buttonStyling = {
 };
 
 function SigninForm() {
+  const states = useLocation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const checkCredentials = () => {
-    if (
-      email === sessionStorage.getItem("email") &&
-      password === sessionStorage.getItem("password")
-    ) {
+    if (email === states.state.email && password === states.state.password) {
       alert("Logged in successfully!");
     } else {
       alert("invalid credentials!");
