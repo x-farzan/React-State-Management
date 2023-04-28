@@ -4,6 +4,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
 import { Link, useLocation } from "react-router-dom";
+import { detailContext } from "../App";
 
 const buttonStyling = {
   position: "absolute",
@@ -20,14 +21,27 @@ const buttonStyling = {
   paddingLeft: "4%",
 };
 
-function SigninForm() {
+function SigninForm(props) {
   const states = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const detailCOntextVal = React.useContext(detailContext);
+
   const checkCredentials = () => {
-    if (email === states.state.email && password === states.state.password) {
+    /**
+     * For getting states passed in routing
+     */
+    // if (email === states.state.email && password === states.state.password) {
+
+    /**
+     * For getting values passed in context
+     */
+    if (
+      email === detailCOntextVal.email &&
+      password === detailCOntextVal.password
+    ) {
       alert("Logged in successfully!");
     } else {
       alert("invalid credentials!");
