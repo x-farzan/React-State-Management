@@ -4,6 +4,8 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
 import { useNavigate } from "react-router-dom";
+import setEmail from "../actions/email";
+import { useDispatch, useSelector } from "react-redux";
 
 const buttonStyling = {
   position: "absolute",
@@ -21,8 +23,12 @@ const buttonStyling = {
 };
 
 function SignupForm(props) {
+  // const emailReducer = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const handleEmailState = (e) => {
-    props.setEmail(e.target.value);
+    dispatch(setEmail(e.target.value));
+    // props.setEmail(e.target.value);
   };
   const handlePasswordState = (e) => {
     props.setPassword(e.target.value);

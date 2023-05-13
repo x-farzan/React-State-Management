@@ -4,7 +4,8 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { detailContext } from "../App";
+import { useSelector } from "react-redux";
+// import { detailContext } from "../App";
 
 const buttonStyling = {
   position: "absolute",
@@ -23,29 +24,30 @@ const buttonStyling = {
 
 function SigninForm(props) {
   const states = useLocation();
+  const emailReducer = useSelector();
+  console.log(`Email reducer ------------ `, emailReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const detailCOntextVal = React.useContext(detailContext);
+  // const detailCOntextVal = React.useContext(detailContext);
 
   const checkCredentials = () => {
     /**
      * For getting states passed in routing
      */
     // if (email === states.state.email && password === states.state.password) {
-
     /**
      * For getting values passed in context
      */
-    if (
-      email === detailCOntextVal.email &&
-      password === detailCOntextVal.password
-    ) {
-      alert("Logged in successfully!");
-    } else {
-      alert("invalid credentials!");
-    }
+    // if (
+    //   email === detailCOntextVal.email &&
+    //   password === detailCOntextVal.password
+    // ) {
+    //   alert("Logged in successfully!");
+    // } else {
+    //   alert("invalid credentials!");
+    // }
   };
 
   return (
