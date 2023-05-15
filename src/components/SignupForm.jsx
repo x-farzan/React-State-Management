@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
 import { useNavigate } from "react-router-dom";
-import setEmail from "../actions/email";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { SIGNUP } from "../redux/actions/types";
 
 const buttonStyling = {
   position: "absolute",
@@ -23,15 +23,22 @@ const buttonStyling = {
 };
 
 function SignupForm(props) {
-  // const emailReducer = useSelector((state) => state);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
   const handleEmailState = (e) => {
-    dispatch(setEmail(e.target.value));
     // props.setEmail(e.target.value);
+    // dispatch(setEmail(e.target.value));
+
+    setEmail(e.target.value);
   };
   const handlePasswordState = (e) => {
-    props.setPassword(e.target.value);
+    setPassword(e.target.value);
+  };
+
+  const HandleSubmit = () => {
+    dispatch({ type: SIGNUP, payload: { email, password } });
   };
 
   const navigate = useNavigate();
@@ -81,6 +88,7 @@ function SignupForm(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          HandleSubmit();
           navigate("/", {
             state: {
               email: props.email,

@@ -5,6 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import styleClass from "./SigninForm.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import { detailContext } from "../App";
 
 const buttonStyling = {
@@ -24,7 +25,7 @@ const buttonStyling = {
 
 function SigninForm(props) {
   const states = useLocation();
-  const emailReducer = useSelector();
+  const { emailReducer } = useSelector((states) => states);
   console.log(`Email reducer ------------ `, emailReducer);
 
   const [email, setEmail] = useState("");
