@@ -28,9 +28,6 @@ function SignupForm(props) {
   const dispatch = useDispatch();
 
   const handleEmailState = (e) => {
-    // props.setEmail(e.target.value);
-    // dispatch(setEmail(e.target.value));
-
     setEmail(e.target.value);
   };
   const handlePasswordState = (e) => {
@@ -41,6 +38,9 @@ function SignupForm(props) {
     dispatch({ type: SIGNUP, payload: { email, password } });
   };
 
+  /**
+   * Carry state with routing
+   */
   const navigate = useNavigate();
 
   return (
@@ -88,7 +88,15 @@ function SignupForm(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+
+          /**
+           * Redux state handling
+           */
           HandleSubmit();
+
+          /**
+           * Passing states with routes
+           */
           navigate("/", {
             state: {
               email: props.email,

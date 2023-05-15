@@ -24,14 +24,23 @@ const buttonStyling = {
 };
 
 function SigninForm(props) {
-  const states = useLocation();
+  /**
+   * For getting states passed in routing
+   */
+  // const states = useLocation();
+
+  /**
+   * For getting values passed in context
+   */
+  // const detailCOntextVal = React.useContext(detailContext);
+
+  /**
+   * For redux
+   */
   const { emailReducer } = useSelector((states) => states);
-  console.log(`Email reducer ------------ `, emailReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const detailCOntextVal = React.useContext(detailContext);
 
   const checkCredentials = () => {
     /**
@@ -49,6 +58,14 @@ function SigninForm(props) {
     // } else {
     //   alert("invalid credentials!");
     // }
+    /**
+     * For redux
+     */
+    if (email == emailReducer.email && password == emailReducer.password) {
+      alert("Logged in successfully!");
+    } else {
+      alert("Invalid credentials!");
+    }
   };
 
   return (
